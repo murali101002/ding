@@ -1,0 +1,32 @@
+<div class="summary-container">
+  <div class="no-summary" *ngIf="rechargeInfo?.length === 0;else showInfo">Cart is Empty</div>
+  <ng-template #showInfo>
+    <div class="summary-title">SUMMARY</div>
+    <div fxLayout="row">
+      <label fxFlex="20%" class="total">Total:</label>
+      <div fxFlex>{{totalCharge | currency}}</div>
+    </div>
+    <div *ngFor="let recharge of rechargeInfo" class="recharge-info">
+      <div fxLayout="row">
+        <label fxFlex="20%">Country:</label>
+        <div fxFlex>{{recharge?.country?.name}}</div>
+      </div>
+      <div fxLayout="row">
+        <label fxFlex="20%">Carrier:</label>
+        <div fxFlex>{{recharge?.carrier?.Name}}</div>
+      </div>
+      <div fxLayout="row">
+        <label fxFlex="20%">Amount:</label>
+        <div fxFlex>{{recharge?.amount | currency}}</div>
+      </div>
+      <div fxLayout="row">
+        <label fxFlex="20%">Phone:</label>
+        <div fxFlex>{{recharge?.phone}}</div>
+      </div>
+    </div>
+    <div class="confirm-btn">
+      <!-- <button type="button" [routerLink]='payment' class="btn btn-success">Confirm</button> -->
+      <button (click)="openCheckout()" class="btn btn-success">Purchase</button>
+    </div>
+  </ng-template>
+</div>

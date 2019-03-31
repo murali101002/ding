@@ -1,0 +1,67 @@
+<div class="recarge-container">
+  <div fxLayout="row" fxLayoutAlign="end center" class="plus-icon">
+    <button type="button" (click)="addRechargeObject()" class="btn btn-success">+</button>
+  </div>
+  <div class="recharge-content" fxLayout="row">
+    <div fxFlex></div>
+    <div fxFlex="60%">
+      <form novalidate [formGroup]="rechargeForm">
+        <div *ngFor='let formKey of rechargeFormKeys' class="form-holder">
+          <div [formGroupName]="formKey">
+            <div fxLayout="row" class="recharge-comp">
+              <div fxFlex="25%"><label>Country</label></div>
+              <div fxFlex>
+                <select formControlName="country"
+                  (ngModelChange)="onFormChange(formKey, 'country', rechargeForm.value[formKey].country)"
+                  class="custom-select" required>
+                  <option *ngFor="let countryName of countryList" [value]="countryName?.iso">
+                    {{countryName?.name}}
+                  </option>
+                </select>
+                <!-- <small *ngIf="rechargeForm.get(formKey).get('country')">This is required</small> -->
+              </div>
+            </div>
+            <div fxLayout="row" class="recharge-comp">
+              <div fxFlex="25%"><label>Carrier</label></div>
+              <div fxFlex>
+                <select formControlName="carrier"
+                  (ngModelChange)="onFormChange(formKey, 'carrier', rechargeForm.value[formKey].carrier)"
+                  class="custom-select" required>
+                  <option *ngFor="let carrier of carriersList[formKey]" [value]="carrier?.ProviderCode">
+                    {{carrier?.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div fxLayout="row" class="recharge-comp">
+              <div fxFlex="25%"><label>Amount</label></div>
+              <div fxFlex>
+                <select formControlName="amount"
+                  (ngModelChange)="onFormChange(formKey, 'amount', rechargeForm.value[formKey].amount)"
+                  class="custom-select" required>
+                  <option *ngFor="let amount of amountsList" [value]="amount">
+                    {{amount | currency}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div fxLayout="row" class="phone" class="recharge-comp">
+              <div fxFlex="25%"><label for="phone">Phone</label></div>
+              <div fxFlex>
+                <input id="phone" class="form-control" formControlName="phone"
+                  [placeholder]="rechargeForm.value[formKey].placeholder" aria-label="phone" required>
+              </div>
+            </div>
+            <!-- <div fxLayout="row" fxLayoutAlign="space-between center" class="submit-button"> -->
+            <div class="add-button">
+              <button type="button" (click)="submitForm(formKey)"
+                [disabled]="rechargeForm.get(formKey).invalid" class="btn btn-primary">Add to cart</button>
+            </div>
+            <!-- </div> -->
+          </div>
+        </div>
+      </form>
+    </div>
+    <div fxFlex></div>
+  </div>
+</div>
