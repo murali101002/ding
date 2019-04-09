@@ -13,25 +13,26 @@ import {
   MatButtonModule,
   MatFormFieldModule
 } from '@angular/material';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { AppComponent } from './app.component';
 import { RechargePageComponent } from './components/recharge-page/recharge-page.component';
 import { SummaryPageComponent } from './components/summary-page/summary-page.component';
-import { RechargeComponent } from './components/recharge/recharge.component';
 import { RechargeRootComponent } from './components/recharge-root/recharge-root.component';
 import { AppRoutingModule } from './recharge/recharge-routing.module';
-import { PaymentComponent } from './components/payment/payment.component';
-import { CustomStripeFormComponent } from './components/custom-stripe-form/custom-stripe-form.component';
+import { environment } from 'src/environments/environment';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { StripePaymentComponent } from './components/stripe-payment/stripe-payment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RechargePageComponent,
     SummaryPageComponent,
-    RechargeComponent,
     RechargeRootComponent,
-    PaymentComponent,
-    CustomStripeFormComponent
+    StripePaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +46,12 @@ import { CustomStripeFormComponent } from './components/custom-stripe-form/custo
     MatSelectModule,
     MatButtonModule,
     MatFormFieldModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    NgxStripeModule.forRoot('pk_test_5s4XD1cRVrwHtBAfpu3iy6Mw'),
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

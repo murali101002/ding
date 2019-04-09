@@ -26,8 +26,5 @@ export class DingService {
       );
   }
 
-  getValidExpression(providerCode): Observable<any> {
-    return this.http.get(`${this.baseUrl}GetProviders?countryIsos=${countryIso}`, { headers: this.headers });
-  }
 
 }

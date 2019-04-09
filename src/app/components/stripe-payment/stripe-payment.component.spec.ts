@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RechargeComponent } from './recharge.component';
+import { StripePaymentComponent } from './stripe-payment.component';
 
-describe('RechargeComponent', () => {
-  let component: RechargeComponent;
-  let fixture: ComponentFixture<RechargeComponent>;
+describe('StripePaymentComponent', () => {
+  let component: StripePaymentComponent;
+  let fixture: ComponentFixture<StripePaymentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RechargeComponent ]
+      declarations: [ StripePaymentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RechargeComponent);
+    fixture = TestBed.createComponent(StripePaymentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

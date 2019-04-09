@@ -1,0 +1,17 @@
+<div class="payment-form">
+  <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
+    <!-- <input type="text" formControlName="name" placeholder="Jane Doe"> -->
+    <input type="text" placeholder="Name" class="form-control" formControlName="name">
+    <input type="email" placeholder="Email" class="form-control" formControlName="email">
+    <input type="text" placeholder="Address1" class="form-control" formControlName="address1">
+    <input type="text" placeholder="Address2" class="form-control" formControlName="address2">
+    <input type="text" placeholder="Phone" class="form-control" formControlName="phone">
+
+    <div id="card-number" class="form-control"></div>
+    <div id="card-cvc" class="form-control"></div>
+    <div id="card-expiry" class="form-control"></div>
+    <button type="submit">
+      BUY
+    </button>
+  </form>
+</div>

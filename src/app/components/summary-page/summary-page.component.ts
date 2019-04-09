@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilityService } from 'src/app/services/utility.service';
+import { FbStorageService } from 'src/app/services/fb-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-summary-page',
@@ -10,7 +12,7 @@ export class SummaryPageComponent implements OnInit {
 
   rechargeInfo = [];
   totalCharge = 0;
-  constructor(private utility: UtilityService) { }
+  constructor(private utility: UtilityService, private router: Router, private fbService: FbStorageService) { }
 
   ngOnInit() {
     this.utility.getRechargeInfo$.subscribe(data => {
@@ -22,21 +24,11 @@ export class SummaryPageComponent implements OnInit {
     });
   }
   openCheckout() {
-    const handler = (<any>window).StripeCheckout.configure({
-      key: '',
-      locale: 'auto',
-      token: function (token: any) {
-        // You can access the token ID with `token.id`.
-        // Get the token ID to your server-side code for use.
-      }
+    this.router.navigate(['payment']);
+    this.fbService.addTransaction({
+      name: 'Object',
+      value: 'Object'
     });
-
-    handler.open({
-      name: 'DING',
-      description: 'Payment',
-      amount: this.totalCharge * 100
-    });
-
   }
 
 }
