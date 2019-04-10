@@ -31,7 +31,7 @@ export class StripePaymentComponent implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required]],
       address1: ['', [Validators.required]],
-      address2: ['', [Validators.required]],
+      address2: [''],
       phone: ['', [Validators.required]]
     });
     this.stripeService.elements(this.elementsOptions)
